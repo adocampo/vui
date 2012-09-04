@@ -3,6 +3,7 @@
 # Under one license, ask me for more information.
 
 import sys, os
+sys.path.append(os.path.abspath(os.path.dirname(sys.argv[0])))
 import vuilib.mmutils 
 from PyQt4 import Qt
 

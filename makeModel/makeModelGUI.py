@@ -25,7 +25,7 @@ class vuiGUI(Qt.QMainWindow):
 
 
 	def test(self):
-		print "Killing in the name of..."
+		print ("Killing in the name of...")
 
 
 if __name__ == '__main__':

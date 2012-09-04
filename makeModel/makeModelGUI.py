@@ -14,7 +14,10 @@ class vuiGUI(Qt.QMainWindow):
 		self.setWindowTitle("make Model GUI")
 
 		layoutV = Qt.QVBoxLayout()
-		layoutV.addWidget(Qt.QStaticText("Test"))
+
+		self.textEdit = Qt.QTextEdit()
+
+		layoutV.addWidget(self.textEdit)
 		self.button =  Qt.QPushButton("Test")
 		self.connect(self.button, Qt.SIGNAL("clicked()"), self.test)
 		layoutV.addWidget(self.button)

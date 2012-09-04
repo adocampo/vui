@@ -3,8 +3,7 @@
 # Under one license, ask me for more information.
 
 import sys, os
-import makeModelGUIcommon
-import makeMutils
+import vuilib.mmutils 
 from PyQt4 import Qt
 
 class vuiGUI(Qt.QMainWindow):

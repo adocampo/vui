@@ -2,8 +2,9 @@
 # Writed by J.A. NachE <nache.nache@gmail.com>
 # Under one license, ask me for more information.
 
-
-import sys
+import sys, os
+import makeModelGUIcommon
+import makeMutils
 from PyQt4 import Qt
 
 class vuiGUI(Qt.QMainWindow):
@@ -13,7 +14,7 @@ class vuiGUI(Qt.QMainWindow):
 		self.setWindowTitle("make Model GUI")
 
 		layoutV = Qt.QVBoxLayout()
-		layoutV.addWidget(Qt.QLabel("Test"))
+		layoutV.addWidget(Qt.QStaticText("Test"))
 		self.button =  Qt.QPushButton("Test")
 		self.connect(self.button, Qt.SIGNAL("clicked()"), self.test)
 		layoutV.addWidget(self.button)

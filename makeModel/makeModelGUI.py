@@ -13,41 +13,19 @@ class vuiGUI(Qt.QMainWindow):
 		super(vuiGUI, self).__init__(None)	
 		self.setWindowTitle("make Model GUI")
 
+
+		HTKbins=['HDMan', 'HLEd', 'HCopy', 'HCompV', 'HERest', 'HHEd', 'HVite']
+
 		layoutFiles = {}
-		layoutFiles['HDMan'] = Qt.QHBoxLayout()
-		layoutFiles['HLEd'] = Qt.QHBoxLayout()
-		layoutFiles['HCopy'] = Qt.QHBoxLayout()
-		layoutFiles['HCompV'] = Qt.QHBoxLayout()
-		layoutFiles['HERest'] = Qt.QHBoxLayout()
-		layoutFiles['HHEd'] = Qt.QHBoxLayout()
-		layoutFiles['HVite'] = Qt.QHBoxLayout()
+		self.labelFiles = {}
+		buttonFiles = {}
 
-		self.labelFiles['HDMan'] = Qt.QLabel()
-		self.labelFiles['HLEd'] = Qt.QLabel()
-		self.labelFiles['HCopy'] = Qt.QLabel()
-		self.labelFiles['HCompV'] = Qt.QLabel()
-		self.labelFiles['HERest'] = Qt.QLabel()
-		self.labelFiles['HHEd'] = Qt.QLabel()
-		self.labelFiles['HVite'] = Qt.QLabel()
-		
-		buttonFiles['HDMan'] = Qt.QPushButton("Buscar...")
-		buttonFiles['HLEd'] = Qt.QPushButton("Buscar...")
-		buttonFiles['HCopy'] = Qt.QPushButton("Buscar...")
-		buttonFiles['HCompV'] = Qt.QPushButton("Buscar...")
-		buttonFiles['HERest'] = Qt.QPushButton("Buscar...")
-		buttonFiles['HHEd'] = Qt.QPushButton("Buscar...")
-		buttonFiles['HVite'] = Qt.QPushButton("Buscar...")
+		for binName in HTKbins:
+			layoutFiles[binName] = Qt.QHBoxLayout()
+			self.labelFiles[binName] = Qt.QLabel()	
+			buttonFiles[binName] = Qt.QPushButton("Buscar...")
+			self.connect(buttonFiles[binName], Qt.SIGNAL("clicked()"), lambda: self.FileDialog(binName))
 
-		self.connect(buttonFiles['HDMan'], Qt.SIGNAL("clicked()"), self.FileDialog, 'HDMan')
-		self.connect(buttonFiles['HLEd'], Qt.SIGNAL("clicked()"), self.FileDialog, 'HLEd')
-		self.connect(buttonFiles['HCopy'], Qt.SIGNAL("clicked()"), self.FileDialog, 'HCopy')
-		self.connect(buttonFiles['HCompV'], Qt.SIGNAL("clicked()"), self.FileDialog, 'HCompV')
-		self.connect(buttonFiles['HERest'], Qt.SIGNAL("clicked()"), self.FileDialog, 'HERest')
-		self.connect(buttonFiles['HHEd'], Qt.SIGNAL("clicked()"), self.FileDialog, 'HHEd')
-		self.connect(buttonFiles['HVite'], Qt.SIGNAL("clicked()"), self.FileDialog, 'HVite')
-
-
-		for ['HDMan', 'HLEd', 'HCopy', 'HCompV', 'HERest', 'HHEd', 'HVite'] in binName:
 			layoutFiles[binName].addWidget(Qt.QLabel(binName))
 			layoutFiles[binName].addWidget(self.labelFiles[binName])
 			layoutFiles[binName].addWidget(buttonFiles[binName])
@@ -58,8 +36,8 @@ class vuiGUI(Qt.QMainWindow):
 		layoutV.addWidget(self.textEdit)
 
 
-		for ['HDMan', 'HLEd', 'HCopy', 'HCompV', 'HERest', 'HHEd', 'HVite'] in binName:
-			layoutV.addWidget(layoutFiles[binName])
+		for binName in HTKbins:
+			layoutV.addLayout(layoutFiles[binName])
 
 		widget=Qt.QWidget()
 		widget.setLayout(layoutV)
@@ -67,7 +45,7 @@ class vuiGUI(Qt.QMainWindow):
 		self.setCentralWidget(widget)
 
 
-	def fileDialog(self,binName):
+	def FileDialog(self,binName):
 		#Bug? if none is returnetd?
 		self.labelFiles[binName] = QtGui.QFileDialog.getOpenFileName(self, 'Open file', '/home')
 

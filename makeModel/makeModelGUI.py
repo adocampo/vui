@@ -13,30 +13,25 @@ class vuiGUI(Qt.QMainWindow):
 		super(vuiGUI, self).__init__(None)	
 		self.setWindowTitle("make Model GUI")
 
-
 		HTKbins=['HDMan', 'HLEd', 'HCopy', 'HCompV', 'HERest', 'HHEd', 'HVite']
 
 		layoutFiles = {}
 		self.labelFiles = {}
 		buttonFiles = {}
+		layoutV = Qt.QVBoxLayout()
+		self.textEdit = Qt.QTextEdit()
+		layoutV.addWidget(self.textEdit)
 
 		for binName in HTKbins:
 			layoutFiles[binName] = Qt.QHBoxLayout()
 			self.labelFiles[binName] = Qt.QLabel()	
 			buttonFiles[binName] = Qt.QPushButton("Buscar...")
-			self.connect(buttonFiles[binName], Qt.SIGNAL("clicked()"), lambda: self.FileDialog(binName))
+			self.connect(buttonFiles[binName], Qt.SIGNAL("clicked()"), lambda bnam=binName: self.FileDialog(bnam))
 
 			layoutFiles[binName].addWidget(Qt.QLabel(binName))
 			layoutFiles[binName].addWidget(self.labelFiles[binName])
 			layoutFiles[binName].addWidget(buttonFiles[binName])
 
-
-		layoutV = Qt.QVBoxLayout()
-		self.textEdit = Qt.QTextEdit()
-		layoutV.addWidget(self.textEdit)
-
-
-		for binName in HTKbins:
 			layoutV.addLayout(layoutFiles[binName])
 
 		widget=Qt.QWidget()
@@ -47,10 +42,8 @@ class vuiGUI(Qt.QMainWindow):
 
 	def FileDialog(self,binName):
 		#Bug? if none is returnetd?
-		self.labelFiles[binName] = QtGui.QFileDialog.getOpenFileName(self, 'Open file', '/home')
-
-	def test(self):
-		print ("Killing in the name of...")
+		selectedFile = Qt.QFileDialog.getOpenFileName(self, 'Buscar binario '+binName, '/home')
+		self.labelFiles[binName].setText(selectedFile)
 
 
 if __name__ == '__main__':

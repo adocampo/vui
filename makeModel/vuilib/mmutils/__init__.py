@@ -4,56 +4,78 @@
 
 import fileinput, os
 
-class mmutils:
-
+class files:
 
 	def __init__(self):
-		self.HDMan_path = NULL
-		self.HLEd_path = NULL
-		self.HCopy_path = NULL
-		self.HCompV_path = NULL
-		self.HERest_path = NULL
-		self.HHEd_path = NULL
-		self.HVite_path = NULL
-
+		self.HTKpath = {}
+		self.HTKpath['HDMan'] = None
+		self.HTKpath['HLEd'] = None
+		self.HTKpath['HCopy'] = None
+		self.HTKpath['HCompV'] = None
+		self.HTKpath['HERest'] = None
+		self.HTKpath['HHEd'] = None
+		self.HTKpath['HVite'] = None
 
 	def getPrompts(self, file):
 		for line in fileinput.input([file]):
 			lines.append([ line.split()[0] , ' '.join(line.split()[1:]) ])
 		return lines
 
-	def locateHTK (self, paths=[]):
-		pass
+	def locateHTK (self, addPaths=[]):
+	# This func only work with unix like
+	# locateHTK is for search bin files of HTK
+
+		osPath = os.environ["PATH"]
+		if len(addPaths) > 0:
+			osPath += ":" + ':'.join(addPaths)
+		
+		files = ['HDMan', 'HLEd', 'HCopy', 'HCompV', 'HERest', 'HHEd', 'HVite']
+		paths = osPath.split(":")
+
+		for file in files:
+			for path in paths:
+				if os.path.exists( os.path.join( path, file ) ):
+					self.HTKpath[file] = os.path.abspath(  os.path.join( path, file )   )
+
+
+
+#      if exists(join(path, filename)):
+#          file_found = 1
+#          break
+#   if file_found:
+#      return abspath(join(path, filename))
+
+#HDMan HLEd HCopy HCompV HERest HHEd HVite
 
 	def setHDMan_path(self, path):
-		self.HDMan_path = path
+		self.HTKpath['HDMan'] = path
 	def setHLEd_path(self, path):
-		self.HLEd_path = path
+		self.HTKpath['HLEd'] = path
 	def setHCopy_path(self, path):
-		self.HCopy_path = path
+		self.HTKpath['HCopy'] = path
 	def setHCompV_path(self, path):
-		self.HCompV_path = path
+		self.HTKpath['HCompV'] = path
 	def setHERest_path(self, path):
-		self.HERest_path = path
+		self.HTKpath['HERest'] = path
 	def setHHEd_path(self, path):
-		self.HHEd_path = path
+		self.HTKpath['HHEd'] = path
 	def setHVite_path(self, path):
-		self.HVite_path = path
+		self.HTKpath['HVite'] = path
 
-	def getHDMan_path(self, path):
-		return self.HDMan_path
-	def getHLEd_path(self, path):
-		return self.HLEd_path
-	def getHCopy_path(self, path):
-		return self.HCopy_path
-	def getHCompV_path(self, path):
-		return self.HCompV_path
-	def getHERest_path(self, path):
-		return self.HERest_path
-	def getHHEd_path(self, path):
-		return self.HHEd_path
-	def getHVite_path(self, path):
-		return self.HVite_path
+	def getHDMan_path(self):
+		return self.HTKpath['HDMan']
+	def getHLEd_path(self):
+		return self.HTKpath['HLEd']
+	def getHCopy_path(self):
+		return self.HTKpath['HCopy']
+	def getHCompV_path(self):
+		return self.HTKpath['HCompV']
+	def getHERest_path(self):
+		return self.HTKpath['HERest']
+	def getHHEd_path(self):
+		return self.HTKpath['HHEd']
+	def getHVite_path(self):
+		return self.HTKpath['HVite']
 
 
 

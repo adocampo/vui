@@ -24,13 +24,13 @@ class vuiGUI(Qt.QMainWindow):
 		layoutV.addWidget(self.textEdit)
 
 		###########
-		mmuf = mmutils.files()
-		mmuf.locateHTK(['/opt/bin/'])
+		self.mmuf = mmutils.files()
+		self.mmuf.locateHTK(['/opt/bin/'])
 		###########
 
 		for binName in HTKbins:
 			layoutFiles[binName] = Qt.QHBoxLayout()
-			self.labelFiles[binName] = Qt.QLabel(mmuf.getHTKbinPATH(binName))
+			self.labelFiles[binName] = Qt.QLabel(self.mmuf.getHTKbinPATH(binName))
 			buttonFiles[binName] = Qt.QPushButton("Buscar...")
 			self.connect(buttonFiles[binName], Qt.SIGNAL("clicked()"), lambda bnam=binName: self.FileDialog(bnam))
 
@@ -48,7 +48,11 @@ class vuiGUI(Qt.QMainWindow):
 	def FileDialog(self,binName):
 		#Bug? if none is returnetd?
 		selectedFile = Qt.QFileDialog.getOpenFileName(self, 'Buscar binario '+binName, '/home')
-		self.labelFiles[binName].setText(selectedFile)
+
+		if os.path.isfile(selectedFile):
+			self.labelFiles[binName].setText(selectedFile)
+			self.mmuf.setHTKbinPATH(binName,selectedFile):
+			
 
 
 if __name__ == '__main__':

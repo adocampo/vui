@@ -68,7 +68,9 @@ class files:
 	def getHVite_path(self):
 		return self.HTKpath['HVite']
 
-
 	def getHTKbinPATH(self,bin):
 		return self.HTKpath[bin]
+
+	def setHTKbinPATH(self,bin,value):
+		self.HTKpath[bin] = value
 

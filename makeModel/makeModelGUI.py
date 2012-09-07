@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # Writed by J.A. NachE <nache.nache@gmail.com>
+# One voice to rule them all...
 # Under one license, ask me for more information.
 
 import sys, os
@@ -22,9 +23,14 @@ class vuiGUI(Qt.QMainWindow):
 		self.textEdit = Qt.QTextEdit()
 		layoutV.addWidget(self.textEdit)
 
+		###########
+		mmuf = mmutils.files()
+		mmuf.locateHTK(['/opt/bin/'])
+		###########
+
 		for binName in HTKbins:
 			layoutFiles[binName] = Qt.QHBoxLayout()
-			self.labelFiles[binName] = Qt.QLabel()	
+			self.labelFiles[binName] = Qt.QLabel(mmuf.getHTKbinPATH(binName))
 			buttonFiles[binName] = Qt.QPushButton("Buscar...")
 			self.connect(buttonFiles[binName], Qt.SIGNAL("clicked()"), lambda bnam=binName: self.FileDialog(bnam))
 
@@ -36,7 +42,6 @@ class vuiGUI(Qt.QMainWindow):
 
 		widget=Qt.QWidget()
 		widget.setLayout(layoutV)
-
 		self.setCentralWidget(widget)
 
 

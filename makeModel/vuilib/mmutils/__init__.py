@@ -38,15 +38,6 @@ class files:
 					self.HTKpath[file] = os.path.abspath(  os.path.join( path, file )   )
 
 
-
-#      if exists(join(path, filename)):
-#          file_found = 1
-#          break
-#   if file_found:
-#      return abspath(join(path, filename))
-
-#HDMan HLEd HCopy HCompV HERest HHEd HVite
-
 	def setHDMan_path(self, path):
 		self.HTKpath['HDMan'] = path
 	def setHLEd_path(self, path):
@@ -78,10 +69,6 @@ class files:
 		return self.HTKpath['HVite']
 
 
-
-
-
-
-
-
+	def getHTKbinPATH(self,bin):
+		return self.HTKpath[bin]
 

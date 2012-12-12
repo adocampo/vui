@@ -45,6 +45,7 @@ class vuiGUI(Qt.QMainWindow):
 		self.setCentralWidget(widget)
 
 
+
 	def FileDialog(self,binName):
 		#Bug? if none is returnetd?
 		selectedFile = Qt.QFileDialog.getOpenFileName(self, 'Buscar binario '+binName, '/home')

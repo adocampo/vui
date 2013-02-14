@@ -4,6 +4,10 @@
 
 import dbus
 
+DESKTOP="desktop"
+SYSTEM="system"
+
+
 class vuidbus:
 	def __init__(self):
 		#
@@ -17,3 +21,12 @@ class absdbus:
 	def __init__(self):
 		self.Desktop_dbus = dbus.SessionBus()
 		self.System_dbus = dbus.SystemBus()
+
+		self.rDesktopObj = self.Desktop_dbus.get_object("org.freedesktop.DBus", "/org/freedesktop/DBus")
+		self.rSystemObj = self.System_dbus.get_object("org.freedesktop.DBus", "/org/freedesktop/DBus")
+
+	def list(self, busdaemon=DESKTOP):
+		if busdaemon == DESKTOP:
+			return self.rDesktopObj.ListNames()
+		else:
+			return self.rSystemObj.ListNames()

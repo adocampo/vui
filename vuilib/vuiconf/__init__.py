@@ -8,15 +8,18 @@ class vuiconf:
 
 
 def getConfFile():
-"""return file location
-this function will detect if
-it is windows or linux/unix system"""
+	pass
+#return file location
+#	this function will detect if
+#it is windows or linux/unix system
 
 class vuiConfFile:
 	#def __init__(fileLocation=getConfFile()): #probe later if this work
 	def __init__(fileLocation=None):
 		if fileLocation == None:
 			#open getConfFile()
+			pass
 		else:
 			#open fileLocation
+			pass
 	

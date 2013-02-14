@@ -1,0 +1,11 @@
+* vuiconf:
+	config class to manage viu config files
+
+
+* vuijulius
+	class to manage julius interaction, also config files, daemon conections and daemon starting
+
+
+* vuidbus
+	class to interact with dbus system
+ 

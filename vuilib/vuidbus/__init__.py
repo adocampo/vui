@@ -29,7 +29,7 @@ class absdbus:
 		self.System_dbus = dbus.SystemBus()
 
 		self.rDesktopObj = self.Desktop_dbus.get_object("org.freedesktop.DBus", "/org/freedesktop/DBus")
-		self.rSystemObj = self.System_dbus.get_object("org.freedesktop.DBus", "/org/freedesktop/DBus")
+		#self.rSystemObj = self.System_dbus.get_object("org.freedesktop.DBus", "/org/freedesktop/DBus")
 
 	def listNames(self, busdaemon=DDESKTOP):
 		if busdaemon == DDESKTOP:
@@ -44,4 +44,5 @@ class absdbus:
 			return self.SystemObj.Introspect();
 
 	def test(self):
-		print(self.Desktop_dbus.get_object(".","/").Introspect())
+		print(self.Desktop_dbus.get_object("org.freedesktop.DBus","/").Introspect())
+bs

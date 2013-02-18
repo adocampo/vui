@@ -68,7 +68,7 @@ class JulConnect:
 					if node.getAttribute('WORD') != 's' and node.getAttribute('WORD') != '/s':
 						command += " "+node.getAttribute('WORD')
 				print ("Received:", command)
-				print ("Sending "+command+" to plugins)
+				print ("Sending "+command+" to plugins")
 				VUIplug.sendSpeechToPlugins(command)
 				#self.execCommands(command)
 

@@ -2,9 +2,7 @@
 # Writed by J.A. Nache <nache.nache@gmail.com>
 # This code is licensed under GPLv3
 
-
 ########### Librerias y funciones ################
-
 import os, sys
 from subprocess import Popen
 import socket
@@ -14,9 +12,7 @@ from time import gmtime, strftime
 import vuilib
 
 VUIplug = vuilib.vuiplug.vuiplug()
-VUIplug.loadPluginsDir("plugins/")
-#VUIplug.DEBUGlistPlugins()
-#VUIplug.sendSpeechToPlugins("test")
+VUIplug.loadPluginsDir("plugins/") #this path need to be extracted from config file
 
 class JulConnect:
 	
@@ -48,7 +44,6 @@ class JulConnect:
 
 		for toParse in data.split(".\n"):
 			toParse = toParse.replace("<s>","s").replace("</s>","/s")
-			#print "#####"+toParse+"#####"
 			dom = parseString("<root>"+toParse+"</root>")
 			if len(dom.getElementsByTagName('INPUT')) >= 1:
 				status = dom.getElementsByTagName('INPUT')[0].getAttribute("STATUS")
@@ -71,8 +66,6 @@ class JulConnect:
 				print ("Sending "+command+" to plugins")
 				VUIplug.sendSpeechToPlugins(command)
 				#self.execCommands(command)
-
-
 
 	#obsolete
 	def execCommands(self, command):

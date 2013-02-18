@@ -45,4 +45,3 @@ class absdbus:
 
 	def test(self):
 		print(self.Desktop_dbus.get_object("org.freedesktop.DBus","/").Introspect())
-bs
